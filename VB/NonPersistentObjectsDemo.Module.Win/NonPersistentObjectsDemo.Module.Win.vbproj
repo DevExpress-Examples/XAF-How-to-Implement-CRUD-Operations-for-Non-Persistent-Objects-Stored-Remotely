@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{72D644CD-C193-4572-B2E3-CA82819A1627}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>NonPersistentObjectsDemo.Module.Win</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>EASYTEST=True</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.Desktop.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Data.Desktop.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Data.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.DataAccess.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.1.UI">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.DataAccess.v20.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.CloneObject.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.CloneObject.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.ConditionalAppearance.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.FileAttachment.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Objects.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.ReportsV2.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.ReportsV2.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Scheduler.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Scheduler.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Scheduler.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Scheduler.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.ScriptRecorder.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ScriptRecorder.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.ScriptRecorder.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Security.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Security.Xpo.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.TreeListEditors.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.TreeListEditors.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Validation.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Validation.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Win.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.ExpressApp.Xpo.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Persistent.Base.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Persistent.BaseImpl.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.1.Core">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Printing.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Utils.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v20.1.UI">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Utils.v20.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Xpo.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraBars.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraEditors.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraGrid.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraLayout.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraNavBar.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraPrinting.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v20.1.Core">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.Charts.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraCharts.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.CodeParser.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraReports.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraReports.v20.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraScheduler.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v20.1.Core">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraScheduler.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v20.1">
+      <Private>True</Private>
+      <HintPath>E:\DXDLLS\20.1.2\DevExpress.XtraTreeList.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Data">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Design">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Xml">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="WinModule.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinModule.Designer.vb">
+      <DependentUpon>WinModule.vb</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ExpressAppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editors\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NonPersistentObjectsDemo.Module\NonPersistentObjectsDemo.Module.vbproj">
+      <Project>{57ACDBDB-006E-43D3-9308-97857F2FF75D}</Project>
+      <Name>NonPersistentObjectsDemo.Module</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
