@@ -3,6 +3,7 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T884361)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
+<!-- default file list -->
 *Files to look at*:
 
 * [AuxiliaryObjects.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.cs)
@@ -11,7 +12,7 @@
 * [Module.cs](./CS/NonPersistentObjectsDemo.Module/Module.cs)
 * [NonPersistentObjectSpaceHelper.cs](./CS/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.cs)
 * [TransientNonPersistentObjectAdapter.cs](./CS/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.cs)
-
+<!-- default file list end -->
 
 # How to implement CRUD operations for Non-Persistent Objects stored remotely
 
