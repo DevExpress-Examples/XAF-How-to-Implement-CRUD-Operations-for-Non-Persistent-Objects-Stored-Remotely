@@ -6,12 +6,12 @@
 <!-- default file list -->
 *Files to look at*:
 
-* [AuxiliaryObjects.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.cs)
-* [AuxiliaryStorage.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryStorage.cs)
-* [NonPersistentObjectBase.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/NonPersistentObjectBase.cs)
-* [Module.cs](./CS/NonPersistentObjectsDemo.Module/Module.cs)
-* [NonPersistentObjectSpaceHelper.cs](./CS/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.cs)
-* [TransientNonPersistentObjectAdapter.cs](./CS/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.cs)
+* [AuxiliaryObjects.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.cs) (VB: [AuxiliaryObjects.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.vb))
+* [AuxiliaryStorage.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryStorage.cs) (VB: [AuxiliaryStorage.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryStorage.vb))
+* [NonPersistentObjectBase.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/NonPersistentObjectBase.cs) (VB: [NonPersistentObjectBase.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/NonPersistentObjectBase.vb))
+* [Module.cs](./CS/NonPersistentObjectsDemo.Module/Module.cs) (VB: [Module.vb](./VB/NonPersistentObjectsDemo.Module/Module.vb))
+* [NonPersistentObjectSpaceHelper.cs](./CS/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.cs) (VB: [NonPersistentObjectSpaceHelper.vb](./VB/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.vb))
+* [TransientNonPersistentObjectAdapter.cs](./CS/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.cs) (VB: [TransientNonPersistentObjectAdapter.vb](./VB/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.vb))
 <!-- default file list end -->
 
 # How to implement CRUD operations for Non-Persistent Objects stored remotely
