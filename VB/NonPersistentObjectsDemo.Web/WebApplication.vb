@@ -1,172 +1,197 @@
-﻿Imports System
+Imports System
 Imports DevExpress.ExpressApp
 Imports System.ComponentModel
 Imports DevExpress.ExpressApp.Web
-Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Xpo
 Imports DevExpress.ExpressApp.Security
-Imports DevExpress.ExpressApp.Security.ClientServer
 
 Namespace NonPersistentObjectsDemo.Web
-	' For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
-	Partial Public Class NonPersistentObjectsDemoAspNetApplication
-		Inherits WebApplication
 
-		Private module1 As DevExpress.ExpressApp.SystemModule.SystemModule
-		Private module2 As DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule
-		Private module3 As NonPersistentObjectsDemo.Module.NonPersistentObjectsDemoModule
-		Private module4 As NonPersistentObjectsDemo.Module.Web.NonPersistentObjectsDemoAspNetModule
-		Private securityModule1 As DevExpress.ExpressApp.Security.SecurityModule
-		Private securityStrategyComplex1 As DevExpress.ExpressApp.Security.SecurityStrategyComplex
-		Private authenticationStandard1 As DevExpress.ExpressApp.Security.AuthenticationStandard
-		Private objectsModule As DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule
-		Private cloneObjectModule As DevExpress.ExpressApp.CloneObject.CloneObjectModule
-		Private conditionalAppearanceModule As DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule
-		Private fileAttachmentsAspNetModule As DevExpress.ExpressApp.FileAttachments.Web.FileAttachmentsAspNetModule
-		Private reportsModuleV2 As DevExpress.ExpressApp.ReportsV2.ReportsModuleV2
-		Private reportsAspNetModuleV2 As DevExpress.ExpressApp.ReportsV2.Web.ReportsAspNetModuleV2
-		Private schedulerModuleBase As DevExpress.ExpressApp.Scheduler.SchedulerModuleBase
-		Private schedulerAspNetModule As DevExpress.ExpressApp.Scheduler.Web.SchedulerAspNetModule
-		Private scriptRecorderModuleBase As DevExpress.ExpressApp.ScriptRecorder.ScriptRecorderModuleBase
-		Private scriptRecorderAspNetModule As DevExpress.ExpressApp.ScriptRecorder.Web.ScriptRecorderAspNetModule
-		Private treeListEditorsModuleBase As DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase
-		Private treeListEditorsAspNetModule As DevExpress.ExpressApp.TreeListEditors.Web.TreeListEditorsAspNetModule
-		Private validationModule As DevExpress.ExpressApp.Validation.ValidationModule
-		Private validationAspNetModule As DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule
+    ' For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
+    Public Partial Class NonPersistentObjectsDemoAspNetApplication
+        Inherits WebApplication
 
-		#Region "Default XAF configuration options (https:" 'www.devexpress.com/kb=T501418)
-		Shared Sub New()
-			EnableMultipleBrowserTabsSupport = True
-			DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.AllowFilterControlHierarchy = True
-			DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.MaxFilterControlHierarchyDepth = 3
-			DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.AllowFilterControlHierarchyDefault = True
-			DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.MaxHierarchyDepthDefault = 3
-			DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = True
-			DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = False
-		End Sub
-		Private Sub InitializeDefaults()
-			LinkNewObjectToParentImmediately = False
-			OptimizedControllersCreation = True
-		End Sub
-		#End Region
-		Public Sub New()
-			InitializeComponent()
-			InitializeDefaults()
-		End Sub
-		Protected Overrides Function CreateViewUrlManager() As IViewUrlManager
-			Return New ViewUrlManager()
-		End Function
-		Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-			'args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, GetDataStoreProvider(args.ConnectionString, args.Connection), true);
-			args.ObjectSpaceProvider = New XPObjectSpaceProvider(GetDataStoreProvider(args.ConnectionString, args.Connection), True)
-			args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
-		End Sub
-		Private Function GetDataStoreProvider(ByVal connectionString As String, ByVal connection As System.Data.IDbConnection) As IXpoDataStoreProvider
-			Dim application As System.Web.HttpApplicationState = If(System.Web.HttpContext.Current IsNot Nothing, System.Web.HttpContext.Current.Application, Nothing)
-			Dim dataStoreProvider As IXpoDataStoreProvider = Nothing
-			If application IsNot Nothing AndAlso application("DataStoreProvider") IsNot Nothing Then
-				dataStoreProvider = TryCast(application("DataStoreProvider"), IXpoDataStoreProvider)
-			Else
-				dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, connection, True)
-				If application IsNot Nothing Then
-					application("DataStoreProvider") = dataStoreProvider
-				End If
-			End If
-			Return dataStoreProvider
-		End Function
-		Private Sub NonPersistentObjectsDemoAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles Me.DatabaseVersionMismatch
-#If EASYTEST Then
-			e.Updater.Update()
-			e.Handled = True
+        Private module1 As DevExpress.ExpressApp.SystemModule.SystemModule
+
+        Private module2 As DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule
+
+        Private module3 As [Module].NonPersistentObjectsDemoModule
+
+        Private module4 As [Module].Web.NonPersistentObjectsDemoAspNetModule
+
+        Private securityModule1 As SecurityModule
+
+        Private securityStrategyComplex1 As SecurityStrategyComplex
+
+        Private authenticationStandard1 As AuthenticationStandard
+
+        Private objectsModule As Objects.BusinessClassLibraryCustomizationModule
+
+        Private cloneObjectModule As CloneObject.CloneObjectModule
+
+        Private conditionalAppearanceModule As ConditionalAppearance.ConditionalAppearanceModule
+
+        Private fileAttachmentsAspNetModule As FileAttachments.Web.FileAttachmentsAspNetModule
+
+        Private reportsModuleV2 As ReportsV2.ReportsModuleV2
+
+        Private reportsAspNetModuleV2 As ReportsV2.Web.ReportsAspNetModuleV2
+
+        Private schedulerModuleBase As Scheduler.SchedulerModuleBase
+
+        Private schedulerAspNetModule As Scheduler.Web.SchedulerAspNetModule
+
+        Private scriptRecorderModuleBase As ScriptRecorder.ScriptRecorderModuleBase
+
+        Private scriptRecorderAspNetModule As ScriptRecorder.Web.ScriptRecorderAspNetModule
+
+        Private treeListEditorsModuleBase As TreeListEditors.TreeListEditorsModuleBase
+
+        Private treeListEditorsAspNetModule As TreeListEditors.Web.TreeListEditorsAspNetModule
+
+        Private validationModule As Validation.ValidationModule
+
+        Private validationAspNetModule As Validation.Web.ValidationAspNetModule
+
+#Region "Default XAF configuration options (https://www.devexpress.com/kb=T501418)"
+        Shared Sub New()
+            EnableMultipleBrowserTabsSupport = True
+            Editors.ASPx.ASPxGridListEditor.AllowFilterControlHierarchy = True
+            Editors.ASPx.ASPxGridListEditor.MaxFilterControlHierarchyDepth = 3
+            Editors.ASPx.ASPxCriteriaPropertyEditor.AllowFilterControlHierarchyDefault = True
+            Editors.ASPx.ASPxCriteriaPropertyEditor.MaxHierarchyDepthDefault = 3
+            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = True
+            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = False
+        End Sub
+
+        Private Sub InitializeDefaults()
+            LinkNewObjectToParentImmediately = False
+            OptimizedControllersCreation = True
+        End Sub
+
+#End Region
+        Public Sub New()
+            InitializeComponent()
+            InitializeDefaults()
+        End Sub
+
+        Protected Overrides Function CreateViewUrlManager() As IViewUrlManager
+            Return New ViewUrlManager()
+        End Function
+
+        Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
+            'args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, GetDataStoreProvider(args.ConnectionString, args.Connection), true);
+            args.ObjectSpaceProvider = New XPObjectSpaceProvider(GetDataStoreProvider(args.ConnectionString, args.Connection), True)
+            args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
+        End Sub
+
+        Private Function GetDataStoreProvider(ByVal connectionString As String, ByVal connection As System.Data.IDbConnection) As IXpoDataStoreProvider
+            Dim application As System.Web.HttpApplicationState = If(System.Web.HttpContext.Current IsNot Nothing, System.Web.HttpContext.Current.Application, Nothing)
+            Dim dataStoreProvider As IXpoDataStoreProvider = Nothing
+            If application IsNot Nothing AndAlso application("DataStoreProvider") IsNot Nothing Then
+                dataStoreProvider = TryCast(application("DataStoreProvider"), IXpoDataStoreProvider)
+            Else
+                dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, connection, True)
+                If application IsNot Nothing Then
+                    application("DataStoreProvider") = dataStoreProvider
+                End If
+            End If
+
+            Return dataStoreProvider
+        End Function
+
+        Private Sub NonPersistentObjectsDemoAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DatabaseVersionMismatchEventArgs)
+#If EASYTEST
+            e.Updater.Update();
+            e.Handled = true;
 #Else
-			If System.Diagnostics.Debugger.IsAttached Then
-				e.Updater.Update()
-				e.Handled = True
-			Else
-				Dim message As String = "The application cannot connect to the specified database, " & "because the database doesn't exist, its version is older " & "than that of the application or its schema does not match " & "the ORM data model structure. To avoid this error, use one " & "of the solutions from the https://www.devexpress.com/kb=T367835 KB Article."
+            If System.Diagnostics.Debugger.IsAttached Then
+                e.Updater.Update()
+                e.Handled = True
+            Else
+                Dim message As String = "The application cannot connect to the specified database, " & "because the database doesn't exist, its version is older " & "than that of the application or its schema does not match " & "the ORM data model structure. To avoid this error, use one " & "of the solutions from the https://www.devexpress.com/kb=T367835 KB Article."
+                If e.CompatibilityError IsNot Nothing AndAlso e.CompatibilityError.Exception IsNot Nothing Then
+                    message += Microsoft.VisualBasic.Constants.vbCrLf & Microsoft.VisualBasic.Constants.vbCrLf & "Inner exception: " & e.CompatibilityError.Exception.Message
+                End If
 
-				If e.CompatibilityError IsNot Nothing AndAlso e.CompatibilityError.Exception IsNot Nothing Then
-					message &= vbCrLf & vbCrLf & "Inner exception: " & e.CompatibilityError.Exception.Message
-				End If
-				Throw New InvalidOperationException(message)
-			End If
+                Throw New InvalidOperationException(message)
+            End If
 #End If
-		End Sub
-		Private Sub InitializeComponent()
-			Me.module1 = New DevExpress.ExpressApp.SystemModule.SystemModule()
-			Me.module2 = New DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule()
-			Me.module3 = New NonPersistentObjectsDemo.Module.NonPersistentObjectsDemoModule()
-			Me.module4 = New NonPersistentObjectsDemo.Module.Web.NonPersistentObjectsDemoAspNetModule()
-			Me.securityModule1 = New DevExpress.ExpressApp.Security.SecurityModule()
-			Me.securityStrategyComplex1 = New DevExpress.ExpressApp.Security.SecurityStrategyComplex()
-			Me.securityStrategyComplex1.SupportNavigationPermissionsForTypes = False
-			Me.authenticationStandard1 = New DevExpress.ExpressApp.Security.AuthenticationStandard()
-			Me.objectsModule = New DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule()
-			Me.cloneObjectModule = New DevExpress.ExpressApp.CloneObject.CloneObjectModule()
-			Me.conditionalAppearanceModule = New DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule()
-			Me.fileAttachmentsAspNetModule = New DevExpress.ExpressApp.FileAttachments.Web.FileAttachmentsAspNetModule()
-			Me.reportsModuleV2 = New DevExpress.ExpressApp.ReportsV2.ReportsModuleV2()
-			Me.reportsAspNetModuleV2 = New DevExpress.ExpressApp.ReportsV2.Web.ReportsAspNetModuleV2()
-			Me.schedulerModuleBase = New DevExpress.ExpressApp.Scheduler.SchedulerModuleBase()
-			Me.schedulerAspNetModule = New DevExpress.ExpressApp.Scheduler.Web.SchedulerAspNetModule()
-			Me.scriptRecorderModuleBase = New DevExpress.ExpressApp.ScriptRecorder.ScriptRecorderModuleBase()
-			Me.scriptRecorderAspNetModule = New DevExpress.ExpressApp.ScriptRecorder.Web.ScriptRecorderAspNetModule()
-			Me.treeListEditorsModuleBase = New DevExpress.ExpressApp.TreeListEditors.TreeListEditorsModuleBase()
-			Me.treeListEditorsAspNetModule = New DevExpress.ExpressApp.TreeListEditors.Web.TreeListEditorsAspNetModule()
-			Me.validationModule = New DevExpress.ExpressApp.Validation.ValidationModule()
-			Me.validationAspNetModule = New DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule()
-			DirectCast(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-			' 
-			' securityStrategyComplex1
-			' 
-			Me.securityStrategyComplex1.Authentication = Me.authenticationStandard1
-			Me.securityStrategyComplex1.RoleType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole)
-			Me.securityStrategyComplex1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
-			' 
-			' securityModule1
-			' 
-			Me.securityModule1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
-			' 
-			' authenticationStandard1
-			' 
-			Me.authenticationStandard1.LogonParametersType = GetType(DevExpress.ExpressApp.Security.AuthenticationStandardLogonParameters)
-			'
-			' reportsModuleV2
-			'
-			Me.reportsModuleV2.EnableInplaceReports = True
-			Me.reportsModuleV2.ReportDataType = GetType(DevExpress.Persistent.BaseImpl.ReportDataV2)
-			Me.reportsModuleV2.ShowAdditionalNavigation = False
-			Me.reportsAspNetModuleV2.ReportViewerType = DevExpress.ExpressApp.ReportsV2.Web.ReportViewerTypes.HTML5
-			Me.reportsModuleV2.ReportStoreMode = DevExpress.ExpressApp.ReportsV2.ReportStoreModes.XML
-			' 
-			' NonPersistentObjectsDemoAspNetApplication
-			' 
-			Me.ApplicationName = "NonPersistentObjectsDemo"
-			Me.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema
-			Me.Modules.Add(Me.module1)
-			Me.Modules.Add(Me.module2)
-			Me.Modules.Add(Me.module3)
-			Me.Modules.Add(Me.module4)
-			Me.Modules.Add(Me.securityModule1)
-			'this.Security = this.securityStrategyComplex1;
-			Me.Modules.Add(Me.objectsModule)
-			Me.Modules.Add(Me.cloneObjectModule)
-			Me.Modules.Add(Me.conditionalAppearanceModule)
-			Me.Modules.Add(Me.fileAttachmentsAspNetModule)
-			Me.Modules.Add(Me.reportsModuleV2)
-			Me.Modules.Add(Me.reportsAspNetModuleV2)
-			Me.Modules.Add(Me.schedulerModuleBase)
-			Me.Modules.Add(Me.schedulerAspNetModule)
-			Me.Modules.Add(Me.scriptRecorderModuleBase)
-			Me.Modules.Add(Me.scriptRecorderAspNetModule)
-			Me.Modules.Add(Me.treeListEditorsModuleBase)
-			Me.Modules.Add(Me.treeListEditorsAspNetModule)
-			Me.Modules.Add(Me.validationModule)
-			Me.Modules.Add(Me.validationAspNetModule)
-'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
-'ORIGINAL LINE: this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.NonPersistentObjectsDemoAspNetApplication_DatabaseVersionMismatch);
-			DirectCast(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        End Sub
 
-		End Sub
-	End Class
+        Private Sub InitializeComponent()
+            module1 = New SystemModule.SystemModule()
+            module2 = New SystemModule.SystemAspNetModule()
+            module3 = New [Module].NonPersistentObjectsDemoModule()
+            module4 = New [Module].Web.NonPersistentObjectsDemoAspNetModule()
+            securityModule1 = New SecurityModule()
+            securityStrategyComplex1 = New SecurityStrategyComplex()
+            securityStrategyComplex1.SupportNavigationPermissionsForTypes = False
+            authenticationStandard1 = New AuthenticationStandard()
+            objectsModule = New Objects.BusinessClassLibraryCustomizationModule()
+            cloneObjectModule = New CloneObject.CloneObjectModule()
+            conditionalAppearanceModule = New ConditionalAppearance.ConditionalAppearanceModule()
+            fileAttachmentsAspNetModule = New FileAttachments.Web.FileAttachmentsAspNetModule()
+            reportsModuleV2 = New ReportsV2.ReportsModuleV2()
+            reportsAspNetModuleV2 = New ReportsV2.Web.ReportsAspNetModuleV2()
+            schedulerModuleBase = New Scheduler.SchedulerModuleBase()
+            schedulerAspNetModule = New Scheduler.Web.SchedulerAspNetModule()
+            scriptRecorderModuleBase = New ScriptRecorder.ScriptRecorderModuleBase()
+            scriptRecorderAspNetModule = New ScriptRecorder.Web.ScriptRecorderAspNetModule()
+            treeListEditorsModuleBase = New TreeListEditors.TreeListEditorsModuleBase()
+            treeListEditorsAspNetModule = New TreeListEditors.Web.TreeListEditorsAspNetModule()
+            validationModule = New Validation.ValidationModule()
+            validationAspNetModule = New Validation.Web.ValidationAspNetModule()
+            CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+            ' 
+            ' securityStrategyComplex1
+            ' 
+            securityStrategyComplex1.Authentication = authenticationStandard1
+            securityStrategyComplex1.RoleType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole)
+            securityStrategyComplex1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
+            ' 
+            ' securityModule1
+            ' 
+            securityModule1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
+            ' 
+            ' authenticationStandard1
+            ' 
+            authenticationStandard1.LogonParametersType = GetType(AuthenticationStandardLogonParameters)
+            '
+            ' reportsModuleV2
+            '
+            reportsModuleV2.EnableInplaceReports = True
+            reportsModuleV2.ReportDataType = GetType(DevExpress.Persistent.BaseImpl.ReportDataV2)
+            reportsModuleV2.ShowAdditionalNavigation = False
+            reportsAspNetModuleV2.ReportViewerType = ReportsV2.Web.ReportViewerTypes.HTML5
+            reportsModuleV2.ReportStoreMode = ReportsV2.ReportStoreModes.XML
+            ' 
+            ' NonPersistentObjectsDemoAspNetApplication
+            ' 
+            ApplicationName = "NonPersistentObjectsDemo"
+            CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema
+            Modules.Add(module1)
+            Modules.Add(module2)
+            Modules.Add(module3)
+            Modules.Add(module4)
+            Modules.Add(securityModule1)
+            'this.Security = this.securityStrategyComplex1;
+            Modules.Add(objectsModule)
+            Modules.Add(cloneObjectModule)
+            Modules.Add(conditionalAppearanceModule)
+            Modules.Add(fileAttachmentsAspNetModule)
+            Modules.Add(reportsModuleV2)
+            Modules.Add(reportsAspNetModuleV2)
+            Modules.Add(schedulerModuleBase)
+            Modules.Add(schedulerAspNetModule)
+            Modules.Add(scriptRecorderModuleBase)
+            Modules.Add(scriptRecorderAspNetModule)
+            Modules.Add(treeListEditorsModuleBase)
+            Modules.Add(treeListEditorsAspNetModule)
+            Modules.Add(validationModule)
+            Modules.Add(validationAspNetModule)
+            AddHandler DatabaseVersionMismatch, New EventHandler(Of DatabaseVersionMismatchEventArgs)(AddressOf NonPersistentObjectsDemoAspNetApplication_DatabaseVersionMismatch)
+            CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        End Sub
+    End Class
 End Namespace

@@ -1,5 +1,5 @@
-<%@ Page Language="c#" AutoEventWireup="false" Inherits="ErrorPage" EnableViewState="false"
-    ValidateRequest="false" CodeBehind="Error.aspx.cs" %>
+<%@ Page Language="VB" AutoEventWireup="false" Inherits="ErrorPage" EnableViewState="false"
+    ValidateRequest="false" CodeBehind="Error.aspx.vb" %>
 <!DOCTYPE html>
 <html>
 <head id="Head1" runat="server">
