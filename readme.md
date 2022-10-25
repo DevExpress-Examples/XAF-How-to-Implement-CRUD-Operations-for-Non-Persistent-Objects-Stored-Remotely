@@ -69,3 +69,7 @@ This is a set of classes that represents external storage. These classes can be 
 * [Module.cs](./CS/NonPersistentObjectsDemo.Module/Module.cs) (VB: [Module.vb](./VB/NonPersistentObjectsDemo.Module/Module.vb))
 * [NonPersistentObjectSpaceHelper.cs](./CS/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.cs) (VB: [NonPersistentObjectSpaceHelper.vb](./VB/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.vb))
 * [TransientNonPersistentObjectAdapter.cs](./CS/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.cs) (VB: [TransientNonPersistentObjectAdapter.vb](./VB/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.vb))
+
+## Documentation
+
+* [How to: Perform CRUD Operations with Non-Persistent Objects](https://docs.devexpress.com/eXpressAppFramework/115672/business-model-design-orm/non-persistent-objects/how-to-perform-crud-operations-with-non-persistent-objects)
