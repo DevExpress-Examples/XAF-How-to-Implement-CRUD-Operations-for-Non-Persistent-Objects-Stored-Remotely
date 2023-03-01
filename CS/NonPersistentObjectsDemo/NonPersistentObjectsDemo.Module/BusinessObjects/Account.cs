@@ -9,17 +9,17 @@ namespace NonPersistentObjectsDemo.Module.BusinessObjects {
     [DefaultProperty("PublicName")]
     [DevExpress.ExpressApp.DC.DomainComponent]
     public class Account : NonPersistentObjectBase {
-        private string userName;
+        private string _myKey;
         //[Browsable(false)]
         [DevExpress.ExpressApp.ConditionalAppearance.Appearance("", Enabled = false, Criteria = "Not IsNewObject(This)")]
         [RuleRequiredField]
         [DevExpress.ExpressApp.Data.Key]
-        public string UserName {
-            get { return userName; }
-            set { userName = value; }
+        public string MyKey {
+            get { return _myKey; }
+            set { _myKey = value; }
         }
         public void SetKey(string userName) {
-            this.userName = userName;
+            this._myKey = userName;
         }
         private string publicName;
         public string PublicName {

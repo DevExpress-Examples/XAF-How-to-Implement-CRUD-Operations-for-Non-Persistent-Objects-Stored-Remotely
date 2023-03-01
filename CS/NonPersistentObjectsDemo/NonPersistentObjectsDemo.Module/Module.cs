@@ -39,7 +39,7 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
     private void Application_SetupComplete(object sender, EventArgs e) {
         nonPersistentObjectSpaceHelper = new NonPersistentObjectSpaceHelper((XafApplication)sender, typeof(BaseObject));
         nonPersistentObjectSpaceHelper.AdapterCreators.Add(npos => {
-            var types = new Type[] { typeof(Account), typeof(Message) };
+            var types = new Type[] { typeof(Account) };
             var map = new ObjectMap(npos, types);
             PostOfficeFactory factory =(PostOfficeFactory)((XafApplication)sender).ServiceProvider.GetService(typeof(PostOfficeFactory));
 
