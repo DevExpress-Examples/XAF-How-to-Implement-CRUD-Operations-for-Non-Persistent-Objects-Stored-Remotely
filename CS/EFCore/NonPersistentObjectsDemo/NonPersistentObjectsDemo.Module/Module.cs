@@ -41,7 +41,7 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
         nonPersistentObjectSpaceHelper.AdapterCreators.Add(npos => {
             var types = new Type[] { typeof(Account) };
             var map = new ObjectMap(npos, types);
-            PostOfficeFactory factory =(PostOfficeFactory)((XafApplication)sender).ServiceProvider.GetService(typeof(PostOfficeFactory));
+            PostOfficeFactory factory = (PostOfficeFactory)((XafApplication)sender).ServiceProvider.GetService(typeof(PostOfficeFactory));
 
             new TransientNonPersistentObjectAdapter(npos, map, factory);
         });
