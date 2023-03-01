@@ -1,17 +1,20 @@
 ﻿using DevExpress.Data.Filtering;
-using NonPersistentObjectsDemo.Module.ServiceClasses;
 using System;
 using System.Collections;
 using System.Linq;
 
-namespace NonPersistentObjectsDemo.Module.BusinessObjects {
+namespace NonPersistentObjectsDemo.Module.ServiceClasses {
     public class PostOfficeFactory : NonPersistentObjectFactoryBase {
-        private PostOfficeClient Storage => GlobalServiceProvider<PostOfficeClient>.GetService();
+    //    private PostOfficeClient Storage => GlobalServiceProvider<PostOfficeClient>.GetService();
         private bool isLoading = false;
         private ObjectMap objectMap;
-        public PostOfficeFactory(ObjectMap objectMap) {
-            this.objectMap = objectMap;
+        //public PostOfficeFactory(ObjectMap objectMap) {
+        //    this.objectMap = objectMap;
+        //}
+        public PostOfficeFactory(PostOfficeClient _storage) {
+            Storage= _storage;
         }
+        private PostOfficeClient Storage;
         public override object GetObjectByKey(Type objectType, object key) {
             if(key == null) {
                 throw new ArgumentNullException(nameof(key));

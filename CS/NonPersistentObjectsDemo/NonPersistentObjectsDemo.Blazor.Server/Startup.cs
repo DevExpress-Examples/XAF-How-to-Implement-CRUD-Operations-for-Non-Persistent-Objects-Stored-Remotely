@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.EntityFrameworkCore;
 using NonPersistentObjectsDemo.Blazor.Server.Services;
 using DevExpress.ExpressApp.Core;
+using NonPersistentObjectsDemo.Module.ServiceClasses;
 
 namespace NonPersistentObjectsDemo.Blazor.Server;
 
@@ -25,6 +26,8 @@ public class Startup {
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddHttpContextAccessor();
+        services.AddScoped<PostOfficeClient>();
+        services.AddScoped<PostOfficeFactory>();
         services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
         services.AddXaf(Configuration, builder => {
             builder.UseApplication<NonPersistentObjectsDemoBlazorApplication>();

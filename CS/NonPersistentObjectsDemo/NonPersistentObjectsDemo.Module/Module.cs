@@ -11,6 +11,7 @@ using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.BaseImpl.EF;
 using NonPersistentObjectsDemo.Module.BusinessObjects;
+using NonPersistentObjectsDemo.Module.ServiceClasses;
 
 namespace NonPersistentObjectsDemo.Module;
 
@@ -40,7 +41,9 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
         nonPersistentObjectSpaceHelper.AdapterCreators.Add(npos => {
             var types = new Type[] { typeof(Account), typeof(Message) };
             var map = new ObjectMap(npos, types);
-            new TransientNonPersistentObjectAdapter(npos, map, new PostOfficeFactory(map));
+            PostOfficeFactory factory =(PostOfficeFactory)((XafApplication)sender).ServiceProvider.GetService(typeof(PostOfficeFactory));
+
+            new TransientNonPersistentObjectAdapter(npos, map, factory);
         });
     }
 }

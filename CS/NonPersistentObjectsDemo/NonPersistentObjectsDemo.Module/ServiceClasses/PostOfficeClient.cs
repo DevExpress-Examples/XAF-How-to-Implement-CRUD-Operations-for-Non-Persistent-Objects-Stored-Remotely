@@ -9,9 +9,9 @@ using NonPersistentObjectsDemo.Module.BusinessObjects;
 namespace NonPersistentObjectsDemo.Module.ServiceClasses {
 
     public class PostOfficeClient {
-        static PostOfficeClient() {
-            GlobalServiceProvider<PostOfficeClient>.AddService(() => new PostOfficeClient());
-        }
+        //static PostOfficeClient() {
+        //    GlobalServiceProvider<PostOfficeClient>.AddService(() => new PostOfficeClient());
+        //}
         public Dictionary<Type, DataStoreMapping> Mappings { get; private set; }
         public IDataStore DataStore { get; private set; }
         public PostOfficeClient() {
