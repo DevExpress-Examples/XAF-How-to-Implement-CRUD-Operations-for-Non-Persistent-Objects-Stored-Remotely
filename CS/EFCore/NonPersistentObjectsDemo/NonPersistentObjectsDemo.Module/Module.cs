@@ -12,20 +12,20 @@ using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.BaseImpl.EF;
 using NonPersistentObjectsDemo.Module.BusinessObjects;
 using NonPersistentObjectsDemo.Module.ServiceClasses;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NonPersistentObjectsDemo.Module;
 
 // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.
 public sealed class NonPersistentObjectsDemoModule : ModuleBase {
-    private NonPersistentObjectSpaceHelper nonPersistentObjectSpaceHelper;
     public NonPersistentObjectsDemoModule() {
-		// 
-		// NonPersistentObjectsDemoModule
-		// 
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
-      
+        // 
+        // NonPersistentObjectsDemoModule
+        // 
+        RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
+        RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
+        RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
+
     }
     public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
         ModuleUpdater updater = new DatabaseUpdate.Updater(objectSpace, versionFromDB);
@@ -34,16 +34,23 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
     public override void Setup(XafApplication application) {
         base.Setup(application);
         // Manage various aspects of the application UI and behavior at the module level.
-        application.SetupComplete += Application_SetupComplete;
+        factory = new PostOfficeFactory();
+        NonPersistentObjectSpace.UseKeyComparisonToDetermineIdentity = true;
+        NonPersistentObjectSpace.AutoSetModifiedOnObjectChangeByDefault = true;
+        application.ObjectSpaceCreated += Application_ObjectSpaceCreated;
     }
-    private void Application_SetupComplete(object sender, EventArgs e) {
-        nonPersistentObjectSpaceHelper = new NonPersistentObjectSpaceHelper((XafApplication)sender, typeof(BaseObject));
-        nonPersistentObjectSpaceHelper.AdapterCreators.Add(npos => {
+
+    private void Application_ObjectSpaceCreated(object sender, ObjectSpaceCreatedEventArgs e) {
+        if(e.ObjectSpace is NonPersistentObjectSpace) {
+            NonPersistentObjectSpace npos = (NonPersistentObjectSpace)e.ObjectSpace;
+
+            npos.AutoDisposeAdditionalObjectSpaces = true;
             var types = new Type[] { typeof(Account) };
             var map = new ObjectMap(npos, types);
-            PostOfficeFactory factory = (PostOfficeFactory)((XafApplication)sender).ServiceProvider.GetService(typeof(PostOfficeFactory));
-
             new TransientNonPersistentObjectAdapter(npos, map, factory);
-        });
+        }
     }
+
+    PostOfficeFactory factory;
+
 }

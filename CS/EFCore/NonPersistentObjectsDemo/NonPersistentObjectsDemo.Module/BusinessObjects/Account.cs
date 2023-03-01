@@ -10,7 +10,6 @@ namespace NonPersistentObjectsDemo.Module.BusinessObjects {
     [DevExpress.ExpressApp.DC.DomainComponent]
     public class Account : NonPersistentObjectBase {
         private string _myKey;
-        //[Browsable(false)]
         [DevExpress.ExpressApp.ConditionalAppearance.Appearance("", Enabled = false, Criteria = "Not IsNewObject(This)")]
         [RuleRequiredField]
         [DevExpress.ExpressApp.Data.Key]
@@ -18,9 +17,7 @@ namespace NonPersistentObjectsDemo.Module.BusinessObjects {
             get { return _myKey; }
             set { _myKey = value; }
         }
-        public void SetKey(string userName) {
-            this._myKey = userName;
-        }
+   
         private string publicName;
         public string PublicName {
             get { return publicName; }
