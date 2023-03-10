@@ -9,20 +9,20 @@
 
 ## Scenario
 
-This example demonstrates a possible implementation of editable non-persistent objects that represent data stored remotely and separately from the main XAF application database. These non-persistent objects can be created, deleted, and modified. Their changes are persisted in the external storage. The `FilterController` is enabled for these objects, so their list view and lookup list view can be filtered. The built-in `IsNewObject` function is used in the Appearance rule criterion. This rule disables the key property editor after an Account object is saved.
+This example demonstrates a possible implementation of editable non-persistent objects that represent data stored remotely and separately from the main XAF application database. These non-persistent objects can be created, deleted, and modified. Their changes are persisted in the external storage. The built-in `IsNewObject` function is used in the Appearance rule criterion. This rule disables the key property editor after an Account object is saved.
 
 
 ## Solution
 
 The following [NonPersistentObjectSpace](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace) members are used in this example.
 
-Non-persistent objects are kept in an object map. In the [ObjectsGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectsGetting?v=20.1), [ObjectGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectGetting), and [ObjectByKeyGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectByKeyGetting) event handlers, non-persistent objects are looked up and added to the object map. In the [Reloaded](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.BaseObjectSpace.Reloaded) event handler, the object map is cleared. So, subsequent object queries trigger the creation of new non-persistent object instances. In the [ObjectReloading](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectReloading?v=20.1) event handler, the state of an existing object is reloaded from the storage. 
+Non-persistent objects are kept in an object map. In the [ObjectsGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectsGetting), [ObjectGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectGetting), and [ObjectByKeyGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectByKeyGetting) event handlers, non-persistent objects are looked up and added to the object map. In the [Reloaded](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.BaseObjectSpace.Reloaded) event handler, the object map is cleared. So, subsequent object queries trigger the creation of new non-persistent object instances. In the [ObjectReloading](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectReloading) event handler, the state of an existing object is reloaded from the storage. 
 
-In the [CustomCommitChanges](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.BaseObjectSpace.CustomCommitChanges?v=20.1) event handler, all object changes are processed and passed to the storage in a single atomic operation.
+In the [CustomCommitChanges](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.BaseObjectSpace.CustomCommitChanges?v=20.1) event handler, all object changes are processed and passed to the storage.
 
-The [NonPersistentObjectSpace\.AutoSetModifiedOnObjectChange](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.AutoSetModifiedOnObjectChange?v=20.1) property is set to `true` to automatically mark non-persistent objects as modified when the `INotifyPropertyChanged.PropertyChanged`event is raised.
+The [NonPersistentObjectSpace/.AutoSetModifiedOnObjectChange](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.AutoSetModifiedOnObjectChange) property is set to `true` to automatically mark non-persistent objects as modified when the `INotifyPropertyChanged.PropertyChanged`event is raised.
 
-We use a simplified implementation of [IDataStore](https://docs.devexpress.com/CoreLibraries/DevExpress.Xpo.DB.IDataStore) as storage for Non-Persistent Object data.
+We use a List<T> as storage for Non-Persistent Object data.
 
 
 ### Common Components
@@ -63,12 +63,10 @@ This is a set of classes that represents external storage. These classes can be 
 
 ## Files to Review
 
-* [AuxiliaryObjects.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.cs) (VB: [AuxiliaryObjects.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryObjects.vb))
-* [AuxiliaryStorage.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryStorage.cs) (VB: [AuxiliaryStorage.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/AuxiliaryStorage.vb))
-* [NonPersistentObjectBase.cs](./CS/NonPersistentObjectsDemo.Module/BusinessObjects/NonPersistentObjectBase.cs) (VB: [NonPersistentObjectBase.vb](./VB/NonPersistentObjectsDemo.Module/BusinessObjects/NonPersistentObjectBase.vb))
-* [Module.cs](./CS/NonPersistentObjectsDemo.Module/Module.cs) (VB: [Module.vb](./VB/NonPersistentObjectsDemo.Module/Module.vb))
-* [NonPersistentObjectSpaceHelper.cs](./CS/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.cs) (VB: [NonPersistentObjectSpaceHelper.vb](./VB/NonPersistentObjectsDemo.Module/NonPersistentObjectSpaceHelper.vb))
-* [TransientNonPersistentObjectAdapter.cs](./CS/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.cs) (VB: [TransientNonPersistentObjectAdapter.vb](./VB/NonPersistentObjectsDemo.Module/TransientNonPersistentObjectAdapter.vb))
+* [Account.cs](./CS/EFCore/NonPersistentObjectsDemo/NonPersistentObjectsDemo.Module/BusinessObjects/Account.cs)
+* [PostOfficeStorage.cs](./CS/EFCore/NonPersistentObjectsDemo/NonPersistentObjectsDemo.Module/ServiceClasses/PostOfficeStorage.cs)
+* [TransientNonPersistentObjectAdapter.cs](./CS/EFCore/NonPersistentObjectsDemo/NonPersistentObjectsDemo.Module/ServiceClasses/TransientNonPersistentObjectAdapter.cs)
+
 
 ## Documentation
 
