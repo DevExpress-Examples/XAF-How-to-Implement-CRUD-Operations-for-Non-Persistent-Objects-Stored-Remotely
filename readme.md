@@ -22,7 +22,7 @@ In the [CustomCommitChanges](https://docs.devexpress.com/eXpressAppFramework/Dev
 
 The [NonPersistentObjectSpace/.AutoSetModifiedOnObjectChange](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.AutoSetModifiedOnObjectChange) property is set to `true` to automatically mark non-persistent objects as modified when the `INotifyPropertyChanged.PropertyChanged`event is raised.
 
-We use a List<T> as storage for Non-Persistent Object data.
+We use a 'List<T>' as storage for Non-Persistent Object data.
 
 
 ### Common Components
@@ -33,33 +33,13 @@ The following classes are used to provide a common functionality for all non-per
 
 The abstract base class for all non-persistent objects used in the application. It provides a common implementation of the `INotifyPropertyChanged` and `IObjectSpaceLink` interfaces and some convenient protected methods.
 
-#### NonPersistentObjectSpaceHelper
-
-This is a helper class that subscribes to the `XafApplication.ObjectSpaceCreated` event and performs a common setup of `NonPersistentObjectSpace`. This usually includes creating and linking additional object spaces, and setting up object adapters. Adapters are registered in the `Application.SetupComplete` event handler in module code.
-
 #### TransientNonPersistentObjectAdapter
 
-The adapter for transient (short-living) Non-Persistent business objects. Such objects exist only while their object space is alive. A new adapter instance is created for each non-persistent object space. It subscribes to object space events to manage a subset of object types in a common manner. It uses a factory to handle specific object types and their storage. It also maintains an identity map (`ObjectMap`) for `NonPersistentObjectSpace`.
+The adapter for transient (short-living) Non-Persistent business objects. Such objects exist only while their object space is alive. A new adapter instance is created for each non-persistent object space. It subscribes to object space events to manage a subset of object types in a common manner. It also maintains an identity map (`ObjectMap`) for `NonPersistentObjectSpace`.
 
-#### NonPersistentObjectFactoryBase
+#### NonPersistentStorageBase
 
 Descendants of this class know how to create object instances and transfer data between objects and the storage. It knows nothing about the adapter. It also uses the identity map to avoid creating duplicated objects.
-
-#### DataStoreMapper
-
-This is a set of classes that represents external storage. These classes can be used by a factory to store object data in XPO's IDataStore storage. The classes are:
-
-* `DataStoreObjectLoader`
-  
-  Loads objects by their keys and collections of objects.
-
-* `DataStoreObjectSaver`
-  
-  Saves data of modified objects.
-  
-* `DataStoreMapping`
-  
-  Describes how objects are mapped to tables and columns.
 
 ## Files to Review
 
