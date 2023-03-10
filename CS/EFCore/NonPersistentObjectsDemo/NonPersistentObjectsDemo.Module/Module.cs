@@ -34,7 +34,7 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
     public override void Setup(XafApplication application) {
         base.Setup(application);
         // Manage various aspects of the application UI and behavior at the module level.
-        factory = new PostOfficeFactory();
+        storage = new PostOfficeStorage();
         NonPersistentObjectSpace.UseKeyComparisonToDetermineIdentity = true;
         NonPersistentObjectSpace.AutoSetModifiedOnObjectChangeByDefault = true;
         application.ObjectSpaceCreated += Application_ObjectSpaceCreated;
@@ -47,10 +47,10 @@ public sealed class NonPersistentObjectsDemoModule : ModuleBase {
             npos.AutoDisposeAdditionalObjectSpaces = true;
             var types = new Type[] { typeof(Account) };
             var map = new ObjectMap(npos, types);
-            new TransientNonPersistentObjectAdapter(npos, map, factory);
+            new TransientNonPersistentObjectAdapter(npos, map, storage);
         }
     }
 
-    PostOfficeFactory factory;
+    PostOfficeStorage storage;
 
 }

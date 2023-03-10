@@ -26,7 +26,7 @@ public class Startup {
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddHttpContextAccessor();
-        services.AddScoped<PostOfficeFactory>();
+        services.AddScoped<PostOfficeStorage>();
         services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
         services.AddXaf(Configuration, builder => {
             builder.UseApplication<NonPersistentObjectsDemoBlazorApplication>();

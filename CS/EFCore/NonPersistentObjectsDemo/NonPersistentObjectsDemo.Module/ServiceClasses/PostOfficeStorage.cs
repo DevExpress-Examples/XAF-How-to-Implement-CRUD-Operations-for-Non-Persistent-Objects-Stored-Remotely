@@ -8,8 +8,8 @@ using System.Collections;
 using System.Linq;
 
 namespace NonPersistentObjectsDemo.Module.ServiceClasses {
-    public class PostOfficeFactory : NonPersistentObjectFactoryBase {
-        public PostOfficeFactory() {
+    public class PostOfficeStorage : NonPersistentStorageBase {
+        public PostOfficeStorage() {
             Storage = new List<AccountStub>();
             CreateDemoData(Storage);
         }

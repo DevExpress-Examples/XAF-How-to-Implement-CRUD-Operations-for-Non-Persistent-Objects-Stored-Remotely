@@ -12,11 +12,11 @@ namespace NonPersistentObjectsDemo.Module {
 
     class TransientNonPersistentObjectAdapter {
         private NonPersistentObjectSpace objectSpace;
-        private NonPersistentObjectFactoryBase factory;
+        private NonPersistentStorageBase storage;
         private ObjectMap objectMap;
-        public TransientNonPersistentObjectAdapter(NonPersistentObjectSpace objectSpace, ObjectMap objectMap, NonPersistentObjectFactoryBase factory) {
+        public TransientNonPersistentObjectAdapter(NonPersistentObjectSpace objectSpace, ObjectMap objectMap, NonPersistentStorageBase _storage) {
             this.objectSpace = objectSpace;
-            this.factory = factory;
+            this.storage = _storage;
             this.objectMap = objectMap;
             objectSpace.ObjectsGetting += ObjectSpace_ObjectsGetting;
             objectSpace.ObjectGetting += ObjectSpace_ObjectGetting;
@@ -32,7 +32,7 @@ namespace NonPersistentObjectsDemo.Module {
                 }
                 else {
                     var key = objectSpace.GetKeyValue(e.SourceObject);
-                    e.TargetObject = factory.GetObjectByKey(e.SourceObject.GetType(), key);
+                    e.TargetObject = storage.GetObjectByKey(e.SourceObject.GetType(), key);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace NonPersistentObjectsDemo.Module {
             }
             var toDelete = objectSpace.GetObjectsToDelete(false);
             if(toInsert.Count != 0 || toUpdate.Count != 0 || toDelete.Count != 0) {
-                factory.SaveObjects(toInsert, toUpdate, toDelete);
+                storage.SaveObjects(toInsert, toUpdate, toDelete);
             }
             //e.Handled = false;// !!!
         }
@@ -61,7 +61,7 @@ namespace NonPersistentObjectsDemo.Module {
             if(e.Key != null && objectMap.IsKnown(e.ObjectType)) {
                 Object obj = objectMap.Get(e.ObjectType, e.Key);
                 if(obj == null) {
-                    obj = factory.GetObjectByKey(e.ObjectType, e.Key);
+                    obj = storage.GetObjectByKey(e.ObjectType, e.Key);
                     if(obj!= null && !objectMap.Contains(obj)) {
                         objectMap.Add(e.ObjectType, e.Key, obj);
                     }
@@ -95,7 +95,7 @@ namespace NonPersistentObjectsDemo.Module {
             return sourceObjectSpace == null ? false : sourceObjectSpace.IsNewObject(obj);
         }
         private IEnumerable GetList(Type objectType, CriteriaOperator criteria, IList<DevExpress.Xpo.SortProperty> sorting) {
-            return factory.GetObjects(objectType, criteria, sorting);
+            return storage.GetObjects(objectType, criteria, sorting);
         }
         private void DynamicCollection_FetchObjects(object sender, FetchObjectsEventArgs e) {
             e.Objects = GetList(e.ObjectType, e.Criteria, e.Sorting);
