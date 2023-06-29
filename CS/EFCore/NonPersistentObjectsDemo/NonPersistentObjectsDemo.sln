@@ -3,12 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonPersistentObjectsDemo.Blazor.Server", "NonPersistentObjectsDemo.Blazor.Server\NonPersistentObjectsDemo.Blazor.Server.csproj", "{486A8C71-7C1F-4A3D-B285-1074824AF55C}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonPersistentObjectsDemo.Module", "NonPersistentObjectsDemo.Module\NonPersistentObjectsDemo.Module.csproj", "{E34E44B2-4576-4A31-953A-46065FF16350}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonPersistentObjectsDemo.Win", "NonPersistentObjectsDemo.Win\NonPersistentObjectsDemo.Win.csproj", "{87C07B30-FE6E-4353-B9F9-BE53770892FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonPersistentObjectsDemo.Blazor.Server", "NonPersistentObjectsDemo.Blazor.Server\NonPersistentObjectsDemo.Blazor.Server.csproj", "{486A8C71-7C1F-4A3D-B285-1074824AF55C}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
