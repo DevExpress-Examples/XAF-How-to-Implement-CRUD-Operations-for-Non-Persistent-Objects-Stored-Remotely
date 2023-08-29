@@ -63,7 +63,7 @@ namespace NonPersistentObjectsDemo.Module.ServiceClasses {
                     stub.MyName = obj.PublicName;
                 }
             }
-            foreach(Account obj in toInsert) {
+            foreach(Account obj in toDelete) {
                 var stub = Storage.Where(x => x.MyKey == obj.MyKey).FirstOrDefault();
                 if(stub != null) {
                     Storage.Remove(stub);
