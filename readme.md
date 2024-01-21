@@ -31,7 +31,7 @@ The following classes are used to provide a common functionality for all non-per
   The adapter for transient (short-living) non-persistent business objects. Such objects exist only during the lifespan of their object space. A new adapter instance is created for each non-persistent object space. It subscribes to object space events to manage a subset of object types in a common manner. It also maintains an identity map (`ObjectMap`) for `NonPersistentObjectSpace`.
   
 - `NonPersistentStorageBase`  
-  Descendants of this class know how to create object instances and transfer data between objects and the storage. It knows nothing about the adapter. It also uses the identity map to avoid creating duplicated objects.
+  Descendants of this class know how to create object instances and transfer data between objects and the storage. They know nothing about the adapter. They also use the identity map to avoid creating duplicated objects.
 
 ## Files to Review
 
