@@ -18,7 +18,7 @@ In the [CustomCommitChanges](https://docs.devexpress.com/eXpressAppFramework/Dev
 
 The [NonPersistentObjectSpace.AutoSetModifiedOnObjectChange](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.AutoSetModifiedOnObjectChange) property is set to `true` to automatically mark non-persistent objects as modified when XAF raises the `INotifyPropertyChanged.PropertyChanged` event.
 
-We use `List<T>` as storage for non-persistent object data.
+`List<T>` objects store non-persistent data.
 
 ### Common Components
 
