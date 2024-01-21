@@ -25,7 +25,7 @@ The [NonPersistentObjectSpace.AutoSetModifiedOnObjectChange](https://docs.devexp
 The following classes are used to provide a common functionality for all non-persistent objects used in the demo.
 
 - `NonPersistentObjectBase`  
-  The abstract base class for all non-persistent objects used in the application. It provides a common implementation of the `INotifyPropertyChanged` and `IObjectSpaceLink` interfaces and some convenient protected methods.
+  The abstract base class for all non-persistent objects used in the application. It implements `INotifyPropertyChanged` and `IObjectSpaceLink` interfaces, and a few helpful protected methods.
   
 - `TransientNonPersistentObjectAdapter`  
   The adapter for transient (short-living) non-persistent business objects. Such objects exist only while their object space is alive. A new adapter instance is created for each non-persistent object space. It subscribes to object space events to manage a subset of object types in a common manner. It also maintains an identity map (`ObjectMap`) for `NonPersistentObjectSpace`.
