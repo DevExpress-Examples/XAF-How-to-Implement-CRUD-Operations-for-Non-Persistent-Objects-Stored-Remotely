@@ -12,7 +12,7 @@ This example demonstrates an implementation of editable non-persistent objects t
 
 This example uses [NonPersistentObjectSpace](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace) members.
 
-Non-persistent objects are kept in an object map. XAF uses event handlers to manage the objects.
+Non-persistent objects are kept in an object map. XAF uses event handlers to manage these objects.
 
 1. To look up non-persistent objects and add them to the object map:
     * [ObjectsGetting](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectsGetting)
@@ -24,10 +24,10 @@ Non-persistent objects are kept in an object map. XAF uses event handlers to man
 
      Subsequent object queries trigger the creation of new non-persistent object instances.
 
-3. To reload the state of an existing object from the storage:
+3. To reload the state of an existing object from storage:
    * [ObjectReloading](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.ObjectReloading)
 
-4. To process all object changes and pass them to the storage:
+4. To process all object changes and pass them to storage:
    * [CustomCommitChanges](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.BaseObjectSpace.CustomCommitChanges?v=20.1)
 
 The [NonPersistentObjectSpace.AutoSetModifiedOnObjectChange](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.AutoSetModifiedOnObjectChange) property is set to `true` to automatically mark non-persistent objects as modified when XAF raises the `INotifyPropertyChanged.PropertyChanged` event.
