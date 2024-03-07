@@ -6,7 +6,7 @@
 
 # XAF - How to Implement CRUD Operations for Non-Persistent Objects Stored Remotely
 
-This example demonstrates an implementation of editable non-persistent objects that represent data stored remotely and separately from the main XAF application database. You can create, modify, and delete these non-persistent objects. The changes are persisted in the external storage. The built-in `IsNewObject` function is used in the Appearance rule criterion. This rule disables the key property editor after an `Account` object is saved.
+This example demonstrates an implementation of editable non-persistent objects that represent data stored remotely and separately from the main XAF application database. You can create, modify, and delete these non-persistent objects. The changes are persisted in the external storage. The built-in [`IsNewObject`](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.NonPersistentObjectSpace.IsNewObject(System.Object)) function is used in the Appearance rule criterion that disables the key property editor after a non-persistent object is saved.
 
 ## Implementation Details
 
