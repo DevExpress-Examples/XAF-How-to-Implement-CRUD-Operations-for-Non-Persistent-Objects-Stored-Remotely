@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
@@ -8,9 +7,8 @@ namespace NonPersistentObjectsDemo.Module.BusinessObjects {
     [DefaultClassOptions]
     [DefaultListViewOptions(true, NewItemRowPosition.Top)]
     [DefaultProperty("PublicName")]
-   
     [DevExpress.ExpressApp.DC.DomainComponent]
-    public class Account : NonPersistentObjectBase {
+    public class Account : NonPersistentObjectImpl {
         private string _myKey;
         [DevExpress.ExpressApp.ConditionalAppearance.Appearance("", Enabled = false, Criteria = "Not IsNewObject(This)")]
         [RuleRequiredField]
@@ -23,7 +21,7 @@ namespace NonPersistentObjectsDemo.Module.BusinessObjects {
         private string publicName;
         public string PublicName {
             get { return publicName; }
-            set { SetPropertyValue(nameof(PublicName), ref publicName, value); }
+            set { SetPropertyValue(ref publicName, value); }
         }
     }
 }
